@@ -1,7 +1,7 @@
 {
   "name": "Input Validation Removal",
   "version": "0.0.1",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "This extension was created with the awesome extensionizr.com",
   "homepage_url": "https://github.com/lollobaldo/input-validation-removal",
   "icons": {
@@ -10,26 +10,38 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "src/bg/background.html",
-    "persistent": true
-  },
-  "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
+  "declarative_net_request" : {
+    "rule_resources" : [{
+      "id": "1",
+      "enabled": true,
+      "path": "matcher.json"
+    }]
   },
   "permissions": [
-    "contentSettings"
+    "contentSettings",
+    "scripting",
+    "webRequest",
+    "tabs",
+    "storage",
+    "scripting",
+    "activeTab",
+    "cookies",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://wearefoodstuff.co.uk/*"
   ],
   "content_scripts": [
     {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js"
-      ]
+      "matches": ["*://wearefoodstuff.co.uk/*"],
+      "all_frames": true,
+      "js": ["src/inject/inject.js", "app.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/inject/inject.js", "app.js", "test.js"],
+      "matches": ["*://wearefoodstuff.co.uk/*"]
     }
   ]
 }

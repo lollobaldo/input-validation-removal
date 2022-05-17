@@ -1,3 +1,4 @@
+console.log("app");
 (function (e) {
     function t(t) {
       for (

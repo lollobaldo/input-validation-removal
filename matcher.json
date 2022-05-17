@@ -1,0 +1,11 @@
+[
+{
+    "id" : 1,
+    "priority": 1,
+    "action" : { "type" : "block" },
+    "condition" : {
+      "regexFilter" : "/^https:\\/\\/wearefoodstuff\\.co\\.uk\/js\/app\\.[\\w]*\\.js$/",
+      "resourceTypes" : ["script"]
+    }
+}
+]
